@@ -522,28 +522,28 @@ toc()
 tune8_val %>% show_best(metric='roc_auc')
 
 best_params <- tune8_val %>% select_best(metric='roc_auc')
-
-params8.1 <- flow8 %>% 
-    parameters() %>% 
-    update(
-        trees=trees(range=c(180,220)),
-        tree_depth=tree_depth(range=c(1,5)),
-        sample_size
-        [][][]
-            
-        
-    )
-grid8.1 <- grid_max_entropy(params8.1, size=80)
-tic()
-tune8_val.1 <- tune_grid(
-    flow8,
-    resamples=val_split,
-    grid=grid8.1,
-    metrics=loss_fn,
-    control=control_grid(verbose=TRUE, allow_par = TRUE)
-)
-toc()
-tune8_val.1 %>% show_best(metric='roc_auc')
+# 
+# params8.1 <- flow8 %>% 
+#     parameters() %>% 
+#     update(
+#         trees=trees(range=c(180,220)),
+#         tree_depth=tree_depth(range=c(1,5)),
+#         sample_size
+#         [][][]
+#             
+#         
+#     )
+# grid8.1 <- grid_max_entropy(params8.1, size=80)
+# tic()
+# tune8_val.1 <- tune_grid(
+#     flow8,
+#     resamples=val_split,
+#     grid=grid8.1,
+#     metrics=loss_fn,
+#     control=control_grid(verbose=TRUE, allow_par = TRUE)
+# )
+# toc()
+# tune8_val.1 %>% show_best(metric='roc_auc')
 
 flow8_final <- flow8 %>% 
     finalize_workflow(best_params)
